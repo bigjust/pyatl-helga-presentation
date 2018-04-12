@@ -21,7 +21,6 @@ over the running instance.
 
 - Can connect to IRC, HipChat, XMPP
 - MongoDB
-- Webhooks
 - Logging
 - Webhooks
 - Plugins!
