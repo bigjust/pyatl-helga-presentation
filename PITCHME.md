@@ -203,6 +203,11 @@ class FooCommand(Command):
 
 ```
 
+Note:
+
+The decorators we've seen are simply syntactical sugar for classes
+that are provided. You can subclass Command, Match, and Preprocessor.
+
 ---
 
 ### Plugin Registration
