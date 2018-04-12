@@ -145,9 +145,6 @@ class FooCommand(Command):
 Setuptools and entry_points
 
 ``` python
-
-# setup.py
-
 setup(
     name="helga-alias",
     version='0.4.0',
@@ -160,7 +157,6 @@ setup(
         ],
     ),
 )
-
 ```
 
 Note:
