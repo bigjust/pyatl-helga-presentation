@@ -121,8 +121,6 @@ you." or "Down for everyone"?
 
 ### Class-based Example
 
-from helga.plugins import Command
-
 ``` python
 
 class FooCommand(Command):
@@ -134,7 +132,7 @@ class FooCommand(Command):
         super(FooCommand, self).__init__(*args, **kwargs)
         self.foo_count = 0
 
-    def run(self, client, channel, nick, message, cmd, args):
+    def run(self, *args*)
         self.foo_count += 1
         return u'Foo count is {0}'.format(self.foo_count)
 
