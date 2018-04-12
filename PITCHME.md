@@ -118,6 +118,8 @@ def my_callback(*args, **kwargs):
     pass
 ```
 
+https://github.com/shaunduncan/smokesignal
+
 Note:
 Easy, right?
 
