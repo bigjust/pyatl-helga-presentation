@@ -154,9 +154,7 @@ setup(
     entry_points = dict(
         helga_plugins = [
             'alias = helga_alias:alias',
-        ],
-    ),
-)
+        ]))
 ```
 
 Note:
