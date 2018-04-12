@@ -148,21 +148,17 @@ Setuptools and entry_points
 
 ``` python
 
-from setuptools import setup, find_packages
+# setup.py
 
 setup(
-    name='helga_my_plugin',
-    version='0.0.1',
-    description='A foo plugin',
-    author="Jane Smith"
-    author_email="jane.smith@example.com",
-    packages=find_packages(),
-    py_modules=['helga_my_plugin'],
-    include_package_data=True,
-    zip_safe=True,
-    entry_points=dict(
-        helga_plugins=[
-            'my_plugin = helga_my_plugin:foo',
+    name="helga-alias",
+    version='0.4.0',
+    description=('track nick changes'),
+    author='Justin Caratzas',
+    py_modules=['helga_alias'],
+    entry_points = dict(
+        helga_plugins = [
+            'alias = helga_alias:alias',
         ],
     ),
 )
@@ -172,6 +168,10 @@ setup(
 Note:
 The Helga plugin loader will find any modules that register their
 entry points as helga_plugins.
+
+The helga-alias plugin tracks nick changes, and provides a list of
+aliases as a function that other plugins can use. It does this using
+signals that are emitted by the core framework.
 
 ---
 
