@@ -180,7 +180,8 @@ smokesignal.emit('thing_happened', 1, 2, 3, four=4)
 def my_callback(*args, **kwargs):
     pass
 ```
-@[1-4,6-9]
+@[1-4]
+@[6-9]
 
 https://github.com/shaunduncan/smokesignal
 
