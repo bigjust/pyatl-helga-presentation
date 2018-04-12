@@ -25,10 +25,14 @@ plugins. Plugins are typically python modules registered on pypi
 
 ### A Short History...
 
+@ul
+
 - Olga, Perl like its 1999
 - Helga, the lunch picker
 - IMDB, dpaste, haiku, trivia, dice-rolling
 - ReviewBoard, Jira, PagerDuty, Jenkins
+
+@ulend
 
 Note:
 Olga was an irc bot that was always 'just around' @ CMG, which was a
@@ -42,11 +46,15 @@ The last bullet point shows when Helga became mission critical.
 
 ### Helga Features
 
+@ul
+
 - Can connect to IRC, HipChat, XMPP
 - MongoDB
 - Logging
 - Webhooks
 - Plugins!
+
+@ulend
 
 Note:
 Out of the box, Helga comes with some pretty cool features that don't
