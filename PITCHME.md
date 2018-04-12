@@ -189,44 +189,58 @@ Easy, right?
 ---
 
 
-### A Few Short (and useful) Examples
+### A Few Simple Plugins
 
-- Youtube, Spotify Snarfing
-- iMail, irc mail
+- Youtube (https://github.com/narfman0/helga-youtube-metadata)
+- Spotify (https://github.com/bigjust/helga-spotify)
+- Mail (https://github.com/bigjust/helga-mail)
+- Reminders (https://github.com/shaunduncan/helga-reminders)
 
+Note:
+
+Youtube and spotify links can trigger a call to their respective APIs
+and we can return information such as the video title, length,
+uploader, etc.
+
+Helga-mail sends messages to other users (of the channel), and
+presents them with the message upon re-entering a channel.
+
+Reminders plugin can set a recurring reminder, such as for a morning
+standup, and uses judicious use of reactor.callLater() in order to
+execute reminders in the future.
 
 ---
 
-### Markov Fun
+### Helga, Use Your Words
 
+- Helga-Markovify (https://github.com/narfman0/helga-markovify)
+- Helga-Mimic (https://github.com/bigjust/helga-mimic.git)
 
 Note:
-Wouldn't be a chatbot without a markov plugin
 
+Generating conversational text that isn't terrible is a fun
+challenge. There are challenges with weird tokens, unbalanced
+parenthesis, brackets, quotes, etc. There are two plugins that attempt
+this, in slightly different ways.
+
+Helga-Markovify uses the markovify plugin.
+
+Helga-Mimic uses the oral history plugin, which logs the text sent to
+the channel in the mongo database. It feeds that into a python library
+called Cobe, which is the spiritual successor to the MegaHAL
+conversation simulator. It can then build conversational
+units by filtering on that table, so it can mimic a specific person,
+or the channel as a whole.
+
+It presents fairly realistic, yet still funny text, which can be
+seeded by text as well, to make it seem like its "responding". We
+trigger this action by directly addressing the bot
 
 ---
 
 ### Jeopardy... In IRC
 
-- Based on the
-
----
-
-### Async / Background Tasks
-
-
-
----
-
-### More Novel plugins
-
-- Haskell REPL (https://github.com/carymrobbins/helga-haskell.git)
--
-- Interactive Fiction???
-
-Note:
-Adam Coddington created an empty helga-interactive-fiction repo, the tease feels
-are real.
+- Live Demo!
 
 ---
 
@@ -243,9 +257,22 @@ defined properly). The other is to use Smoke Signal.
 
 ---
 
+### Even More
 
-### Proof-of-Conversation
+- helga-twitter (https://github.com/bigjust/helga-twitter)
+- helga-repost (https://github.com/bigjust/helga-repost)
+- helga-weather (https://github.com/narfman0/helga-weather)
+- helga-clojure (https://github.com/will2dye4/helga-clojure)
 
+Note:
+the twitter allows the channel, and other plugins, to tweet. Other
+plugins, like the mimic plugin, can trigger a tweet, with say ",mimic
+tweet", which will simply tweet the last response that the plugin
+generated.
+
+Repost uses the preprocessor to track urls or links, and if someone
+who isn't paying attention posts the same link 10 minutes later, it'll
+duly report it as a repost, as well as how long ago it was first seen.
 
 ---
 
@@ -260,4 +287,6 @@ defined properly). The other is to use Smoke Signal.
 
 - Shaun Duncan, for creating Helga
 - James Hsiao, for creating / maintaining Olga (Helga's predecessor)
+- All the plugin authors (Alfredo Deza, Cary Robbins, Jon Robison, Ken
+  Dreyer, Matt Simpson, Michael Orr, etc etc)
 - A certain channel on a certain irc network (yeah, you), for QA
