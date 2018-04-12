@@ -111,11 +111,76 @@ you." or "Down for everyone"?
 
 ### Match
 
+``` python
+
+@match('{}(artist|album|track)/(\w+)'.format(spotify_url))
+def spotify(client, channel, nick, message, matches):
+    return process_spotify_url(*matches[0])
+
+def process_spotify_url(spotify_type, spotify_id):
+
+    token = get_spotify_token()
+    resp = requests.get(
+        '{}{}s/{}'.format(
+            spotify_api_base,
+            spotify_type,
+            spotify_id
+        ),
+        headers={'Authorization': 'Bearer {}'.format(token)}
+    )
+
+    resp_json = resp.json()
+
+    if spotify_type == 'artist':
+        return '{} ({})'.format(
+            resp_json['name'],
+            ', '.join(resp_json['genres'])
+        )
+
+    return '{} - {}'.format(
+        resp_json['artists'][0]['name'],
+        resp_json['name']
+    )
+
+```
 
 ---
 
 ### Preprocessor
 
+``` python
+@preprocessor
+def yelling(client, channel, nick, message, *args):
+
+    if len(args) == 0:
+        # Preprocessor
+        if is_shout(message):
+            count = db.yelling.find({
+                'channel': channel,
+            }).count()
+
+            if count:
+                random_resp = db.yelling.find({
+                    'channel': channel
+                })[random.randrange(count)]
+
+                client.msg(channel, random_resp['msg'])
+
+            db.yelling.update_one({
+                'msg': message,
+                'channel': channel,
+            }, { '$set': { 'msg': message } }, upsert=True)
+
+        return (channel, nick, message)
+```
+
+Note:
+
+helga-yelling simply tests for statements that are in all caps. If it
+sees one, it'll add it to the database, and respond with another all
+caps statement it's seen previously.
+
+Its Hilarious.
 
 ---
 
@@ -192,7 +257,6 @@ Easy, right?
 ### A Few Simple Plugins
 
 - Youtube (https://github.com/narfman0/helga-youtube-metadata)
-- Spotify (https://github.com/bigjust/helga-spotify)
 - Mail (https://github.com/bigjust/helga-mail)
 - Reminders (https://github.com/shaunduncan/helga-reminders)
 
