@@ -1,4 +1,4 @@
-# Helga Chatbot Framework
+# Helga
 
 A survey of the Helga chatbot framework
 
