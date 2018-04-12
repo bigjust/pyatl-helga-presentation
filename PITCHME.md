@@ -177,18 +177,17 @@ signals that are emitted by the core framework.
 
 ### Smoke Signals
 
-Emitting a Signal
+@[1-4,6-9]
+
 
 ``` python
 import smokesignal
 
-smokesignal.emit('foo', 1, 2, 3, four=4)
-```
+# Emitting a signal
+smokesignal.emit('thing_happened', 1, 2, 3, four=4)
 
-Receiving a Signal
-
-``` python
-@smokesignal.on('foo')
+# Receiving a Signal
+@smokesignal.on('thing_happened')
 def my_callback(*args, **kwargs):
     pass
 ```
