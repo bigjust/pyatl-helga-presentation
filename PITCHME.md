@@ -105,16 +105,16 @@ defined properly). The other is to use Smoke Signal.
 Emitting a Signal
 
 ``` python
-@smokesignal.once('foo')
-def my_callback():
-    pass
+import smokesignal
+
+smokesignal.emit('foo', 1, 2, 3, four=4)
 ```
 
 Receiving a Signal
 
 ``` python
 @smokesignal.on('foo')
-def my_callback():
+def my_callback(*args, **kwargs):
     pass
 ```
 
