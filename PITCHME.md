@@ -83,10 +83,29 @@ plugins. And we'll see other examples of how to log.
 ```
 from helga.plugins import command
 
-@command('foo', aliases=['f'], help='The foo command')
-def foo(client, channel, nick, message, cmd, args):
-    return u'You said "helga foo"'
+def do_isup(client, channel, domain):
+    resp = requests.get('http://isup.me/{domain}'.format(domain=domain))
+    resp.raise_for_status()
+
+    # Find the content we want
+    status = re.findall(r'<div id="container">(.*?)<p>', resp.content.replace('\n', ''))
+    client.msg(channel, status)
+
+
+@command('isup', aliases=['downforeveryoneorjustme'],
+         help='Is foo.com up? Usage: helga [isup|downforeveryoneorjustme] <domain>')
+def isup(client, channel, nick, message, cmd, args):
+    reactor.callLater(0, do_isup, client, channel, args[0])
+    raise ResponseNotReady
+
 ```
+
+
+Note:
+Standard Command plugin. Triggered by the command name `isup` and
+takes 1 argument for the domain. Calls the isup.me web service and
+returns the output, which typically looks like "Looks like its just
+you." or "Down for everyone"?
 
 ---
 
